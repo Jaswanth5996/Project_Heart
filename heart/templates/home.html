@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Heart</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, rgba(6,182,212,1) 0%, rgba(91,33,182,1) 100%);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+    <!-- Navbar -->
+    <nav class="flex items-center justify-between p-6 bg-white shadow-lg fixed top-0 w-full z-10">
+        <div class="flex items-center space-x-2">
+            <img src="https://static.vecteezy.com/system/resources/previews/016/223/367/non_2x/human-heart-logo-medical-cardiology-icon-illustration-vector.jpg" alt="Project Heart Logo" class="h-12 w-12 object-cover">
+            <span class="text-2xl font-bold text-gray-800">Project <span class="text-red-500">Heart</span></span>
+        </div>
+        <ul class="flex space-x-8 text-gray-700">
+            <li><a href="#" class="hover:text-red-500 transition-colors duration-300">Home</a></li>
+            {%if user.is_authenticated%}
+            <li><a href="{%url 'logout'%}" class="hover:text-red-500 transition-colors duration-300">Logout</a></li>
+            <li><a href="{%url 'messages'%}" class="hover:text-red-500 transition-colors duration-300">Messages</a></li>
+            {%else%}
+            <li><a href="{%url 'login'%}" class="hover:text-red-500 transition-colors duration-300">Admin-Login</a></li>
+            {%endif%}
+            <li><a href="#use-case" class="hover:text-red-500 transition-colors duration-300">Use Case</a></li>
+            <li><a href="#solution" class="hover:text-red-500 transition-colors duration-300">Solution</a></li>
+            <li><a href="#contact" class="hover:text-red-500 transition-colors duration-300">Contact</a></li>
+        </ul>
+    </nav>
+<br>
+<br>
+    <!-- Message Section -->
+    <div class="container mx-auto px-6 mt-16">
+        {% if messages %}
+            <div class="mb-4">
+                {% for message in messages %}
+                    <div class="p-4 mb-4 text-white {% if message.tags == 'error' %}bg-red-500{% elif message.tags == 'success' %}bg-green-500{% endif %} rounded-lg">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+
+    <!-- Hero Section -->
+    <header class="gradient-bg text-white py-20 mt-16">
+        <div class="container mx-auto px-6 text-center">
+            <h1 class="text-5xl font-extrabold leading-tight">Your Heart's Guardian</h1>
+            <p class="mt-6 text-xl font-light">Helping you differentiate between gastric pain and heart issues with precision and peace of mind.</p>
+            <a href="#solution" class="mt-8 inline-block bg-red-500 hover:bg-red-600 text-white py-4 px-8 rounded-full text-lg font-semibold transition-transform transform hover:scale-105">Discover the Device</a>
+        </div>
+    </header>
+
+    <!-- Problem Statement Section -->
+    <section id="problem" class="bg-gray-50 py-16">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-4xl font-bold text-gray-800 mb-6">The Problem</h2>
+            <p class="text-lg text-gray-700 leading-relaxed max-w-3xl mx-auto mb-8">
+                Many patients struggle to differentiate between gastric pain and heart issues, which often leads to delayed medical attention, heart damage, and even heart attacks. Accurate diagnosis of these symptoms is critical for timely treatment and effective care.
+            </p>
+            <img src="https://tse1.mm.bing.net/th?id=OIP.x4xirMNHE8_gi9LpIrvITQHaH5&pid=Api&P=0&h=180" alt="Problem Illustration" class="mx-auto rounded-lg shadow-lg max-w-md">
+        </div>
+    </section>
+
+    <!-- Use Case Section -->
+    <section id="use-case" class="py-16 bg-gradient-to-r from-gray-50 to-gray-100">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-gray-800 text-center mb-12">Use Case</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div class="bg-white p-8 shadow-xl rounded-lg hover:shadow-2xl transition-shadow duration-300 transform hover:-translate-y-2">
+                    <h3 class="text-xl font-semibold text-gray-700 mb-4">Initial Diagnosis</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        For patients who face overlapping symptoms of heart and gastric pain before visiting the doctor, Project Heart provides a quick and accurate diagnosis, distinguishing between these two conditions.
+                    </p>
+                </div>
+                <div class="bg-white p-8 shadow-xl rounded-lg hover:shadow-2xl transition-shadow duration-300 transform hover:-translate-y-2">
+                    <h3 class="text-xl font-semibold text-gray-700 mb-4">Post-Visit Remote Monitoring</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Even after visiting the doctor, patients can rely on Project Heart for continuous monitoring and accurate updates about the health of their heart and stomach, all from the comfort of their home.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+<!-- Solution Section -->
+<section id="solution" class="bg-gray-100 py-20">
+    <div class="container   px-6">
+        <h2 class="text-4xl font-bold text-gray-800 text-center mb-12">The Solution: Project Heart</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <!-- Textual Information Section -->
+            <div class="order-last md:order-first">
+                <h3 class="text-3xl font-bold text-gray-700 mb-6">How the Device Works</h3>
+                <p class="text-lg text-gray-600 leading-relaxed mb-6">
+                    Our biocompatible medical device attaches securely to the skin, providing accurate heart and gastric health updates.
+                </p>
+                <ul class="flex flex-col md:flex-row justify-between text-lg text-gray-600 space-y-6 md:space-y-0 md:space-x-12">
+                    <!-- Left Column -->
+                    <div class="left md:w-1/2">
+                        <li><strong>Placement:</strong> The central portion of the device is positioned near the diaphragm. A heart sensor is placed on the heart, and a gastric sensor is attached to the stomach.</li>
+                        <li class="mt-4"><strong>Monitoring:</strong> The device monitors both heart and gastric activity for 5 minutes, after which it is detached from the body.</li>
+                    </div>
+                    <!-- Right Column -->
+                    <div class="right md:w-1/2">
+                        <li><strong>Health Update:</strong> The device’s screen provides instant updates on heart and gastric health. A QR code is also generated for detailed reports.</li>
+                    </div>
+                </ul>
+            </div>
+
+            <!-- Image Section -->
+            <div class="text-center">
+                <img src="http://directorsblog.nih.gov/wp-content/uploads/2014/01/monitors.jpg" alt="Project Heart Device"
+                    class="mx-auto max-w-xs transition-transform transform hover:scale-105 duration-300 rounded-lg shadow-lg">
+            </div>
+        </div>
+    </div>
+</section>
+
+ 
+
+            <!-- Image Section -->
+            <div class="text-center">
+                <img src="http://directorsblog.nih.gov/wp-content/uploads/2014/01/monitors.jpg" alt="Project Heart Device"
+                    class="mx-auto max-w-xs transition-transform transform hover:scale-105 duration-300 rounded-lg shadow-lg">
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Customer Value Proposition Section -->
+    <section class="py-16 bg-gradient-to-r from-blue-50 to-blue-100">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-gray-800 text-center mb-8">Customer Value Proposition</h2>
+            <p class="text-lg text-center text-gray-700 max-w-3xl mx-auto leading-relaxed">
+                Project Heart is patient-independent. It enables individuals to determine the severity level of heart or gastric issues without needing prior medical knowledge. The device keeps them informed about their current heart and gastric health status, providing peace of mind and timely intervention.
+            </p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="bg-gray-100 py-16">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-gray-800 text-center mb-8">Get in Touch</h2>
+            <p class="text-lg text-center text-gray-700 mb-12">Have questions? We'd love to hear from you.</p>
+            <form action="{% url 'home' %}" method="POST" class="max-w-lg mx-auto space-y-6">
+                {%csrf_token%}
+                <div>
+                    <label for="name" class="block text-gray-700 font-semibold mb-2" name="name">Your Name</label>
+                    <input type="text" id="name" name="name" class="w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:border-red-500" placeholder="Enter your name">
+                </div>
+                <div>
+                    <label for="email" class="block text-gray-700 font-semibold mb-2" name="email">Your Email</label>
+                    <input type="email" id="email" name="email" class="w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:border-red-500" placeholder="Enter your email">
+                </div>
+                <div>
+                    <label for="message" class="block text-gray-700 font-semibold mb-2" name="message">Your Message</label>
+                    <textarea id="message" name="message" class="w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:border-red-500" placeholder="Enter your message"></textarea>
+                </div>
+                <button type="submit" class="w-full bg-red-500 hover:bg-red-600 text-white py-4 px-8 rounded-lg font-semibold transition-colors duration-300">Send Message</button>
+            </form>
+            </div>
+            </section>
+            </body>
+            </html>
